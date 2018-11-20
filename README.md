@@ -2,13 +2,11 @@
 
 [![](https://jitpack.io/v/lewik/klog.svg)](https://jitpack.io/#lewik/klog)
 
-KLogging provides unified logging API, which you can use from Kotlin code targeted for JVM, Javascript and common kotlin.
-The library is inspired by
-- code at [https://github.com/MicroUtils/kotlin-logging] 
-- and discussion at [http://stackoverflow.com/questions/34416869/idiomatic-way-of-logging-in-kotlin]
+KLogging provides unified logging API, which you can use from Kotlin code targeted for JVM, Javascript common kotlin (and native soon).
                                       
                                       
 ## Download
+Use https://jitpack.io repository
 ```
 	allprojects {
 		repositories {
@@ -19,65 +17,62 @@ The library is inspired by
 ```
 Use these dependencies per kotlin module respectively:
 ```
-compile 'com.github.lewik.klogging:klogging.common:1.3.10'
-compile 'com.github.lewik.klogging:klogging.js:1.3.10'
-compile 'com.github.lewik.klogging:klogging.jvm:1.3.10'
+compile 'com.github.lewik.klog:klog-metadata:1.3.10' //for common modules
+compile 'com.github.lewik.klog:klog-js:1.3.10'  //for js modules
+compile 'com.github.lewik.klog:klog-jvm:1.3.10'  //for jvm modules
 ```                                   
 Versions will be updated with same kotlin version (PR are welcome)
 
 ## Usage                                              
-KLogger class features 5 levels of logging (to mirror that of SLF4J): trace, debug, info, warn, error with 2 flavors each:
-                                              
-```kotlin
-logger.trace("This string will be evaluated regardless if trace enabled = ${logger.isTraceEnabled}")
-logger.trace {"This string will not be evaluated unless trace enabled = ${logger.isTraceEnabled}"}
-```
-
-To obtain an instance of a logger you need to call one of the `logger()` methods of `KLoggers` 
-(please note that JVM version of this class provides more overloads) or use mix it in:
- 
 ```kotlin
 class Foo {
-    val logger = KLoggers.logger(this)
+    val log = KLoggers.logger(this)
     
     fun test() {
-        logger.info("Have some logging!")    
+        log("This string will be evaluated regardless if trace enabled = ${log.isTraceEnabled}")
+        log {"This string will not be evaluated unless trace enabled = ${log.isTraceEnabled}"}
+    
+        log("debug level")
+        log { "debug level" }
+        
+        log.trace("trace")
+        log.debug("debug")
+        log.info("info")
+        log.warn("warn")
+        log.debug("error")
+        
+        log.trace { "trace" }
+        log.debug { "debug" }
+        log.info { "info" }
+        log.warn { "warn" }
+        log.debug { "error" }
     }
+}
+```
+
+Another ways to obtain logger:
+```kotlin
+class Bar {
+    private val log = KLoggers.logger(this)
+    
+    fun test() { log("Have some logging!") }
 }
 
-class Bar : WithLogging by KLoggerHolder() {
-    fun test() {
-        logger.info("Have some logging!")    
-    }
+class Baz : WithLogging by KLoggerHolder() {
+    fun test() { log("Have some logging!") }
 }
  
-class Baz {
+class Qux {//*
     companion object: WithLogging by KLoggerHolder() 
     
-    fun test() {
-        logger.info("Have some logging!")    
-    }
+    fun test() { log("Have some logging!") }
 } 
 
 ```
 
-Logger is invokable:
-```kotlin
-class Foo {
-    val logger = KLoggers.logger(this)
-    
-    fun test() {
-        logger("Have some logging!")    
-    }
-}
+\* Qux: https://en.wikipedia.org/wiki/Metasyntactic_variable
 
-```
-For file-level loggers I recommend following IntelliJ IDEA live template:
-```xml
-<template name="log" value="private val log = klogging.KLoggers.logger(&quot;$LOGGER_NAME$&quot;)" description="Logger" toReformat="false" toShortenFQNames="true">
-  <variable name="LOGGER_NAME" expression="groovyScript(&quot;com.intellij.openapi.module.ModuleUtil.findModuleForFile(_editor.virtualFile, _editor.project).name + \&quot;/\&quot; + _editor.virtualFile.name&quot;) " defaultValue="" alwaysStopAt="false" />
-  <context>
-    <option name="KOTLIN_TOPLEVEL" value="true" />
-  </context>
-</template>
-```
+## Inspired by
+- code at [https://github.com/shafirov/klogging] 
+- code at [https://github.com/MicroUtils/kotlin-logging] 
+- and discussion at [http://stackoverflow.com/questions/34416869/idiomatic-way-of-logging-in-kotlin]

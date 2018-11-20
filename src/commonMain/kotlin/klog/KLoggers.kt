@@ -1,11 +1,11 @@
 package klog
 
 interface WithLogging {
-    val logger: KLogger
+    val log: KLogger
 }
 
 class KLoggerHolder : WithLogging {
-    override val logger by lazy(LazyThreadSafetyMode.NONE) {
+    override val log by lazy(LazyThreadSafetyMode.NONE) {
         KLoggers.logger(this)
     }
 }
