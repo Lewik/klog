@@ -1,4 +1,4 @@
-# KLogging
+# klog
 
 [![](https://jitpack.io/v/lewik/klog.svg)](https://jitpack.io/#lewik/klog)
 
