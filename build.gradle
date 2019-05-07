@@ -1,11 +1,11 @@
 plugins {
-    id 'kotlin-multiplatform' version '1.3.30'
+    id 'kotlin-multiplatform' version '1.3.31'
 }
 repositories {
     mavenCentral()
 }
 group 'klog'
-version '1.3.30'
+version '1.3.31'
 
 apply plugin: 'maven-publish'
 
