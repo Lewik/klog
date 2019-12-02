@@ -1,5 +1,6 @@
 package klog
 
+@Suppress("unused")
 class KLogger(baseLogger: BaseLogger) : BaseLogger by baseLogger {
     inline fun trace(msg: () -> Any?) {
         if (isTraceEnabled) trace(msg())

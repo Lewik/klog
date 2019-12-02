@@ -2,11 +2,14 @@ package klog
 
 import org.slf4j.Logger
 
-class JVMLogger(val sl4jLogger: Logger) : BaseLogger {
+class JVMLogger(
+    @Suppress("MemberVisibilityCanBePrivate")
+    val sl4jLogger: Logger
+) : BaseLogger {
     override val isTraceEnabled: Boolean get() = sl4jLogger.isTraceEnabled
     override val isDebugEnabled: Boolean get() = sl4jLogger.isDebugEnabled
-    override val isInfoEnabled:  Boolean get() = sl4jLogger.isInfoEnabled
-    override val isWarnEnabled:  Boolean get() = sl4jLogger.isWarnEnabled
+    override val isInfoEnabled: Boolean get() = sl4jLogger.isInfoEnabled
+    override val isWarnEnabled: Boolean get() = sl4jLogger.isWarnEnabled
     override val isErrorEnabled: Boolean get() = sl4jLogger.isErrorEnabled
 
     override fun trace(message: Any?) {
