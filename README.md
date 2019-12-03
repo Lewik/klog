@@ -1,5 +1,7 @@
 # klog
 
+This project **is not abandonned**. Just create an issue if kotlin version update is missed.
+
 [![](https://jitpack.io/v/lewik/klog.svg)](https://jitpack.io/#lewik/klog)
 
 KLogging provides unified logging API, which you can use from Kotlin code targeted for JVM, Javascript common kotlin (and native soon).
