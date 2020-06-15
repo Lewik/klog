@@ -24,6 +24,7 @@ kotlin {
         // For MacOS, preset should be changed to e.g. presets.macosX64
         //fromPreset(presets.linuxX64, 'linux')
     }
+    macosX64("macos") {}
     sourceSets {
         commonMain {
             dependencies {
@@ -59,9 +60,12 @@ kotlin {
                 implementation 'org.jetbrains.kotlin:kotlin-test-js'
             }
         }
-//        linuxMain {
-//        }
-//        linuxTest {
-//        }
+        macosMain {
+        }
+        macosTest {
+            dependencies {
+                implementation(kotlin("test-annotations-common"))
+            }
+        }
     }
 }
