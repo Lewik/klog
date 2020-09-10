@@ -1,6 +1,6 @@
 # klog
 
-This project **is not abandonned**. Just create an issue if kotlin version update is missed.
+This project **is not abandonned**. It's just nothing to add.
 
 [![](https://jitpack.io/v/lewik/klog.svg)](https://jitpack.io/#lewik/klog)
 
@@ -19,11 +19,10 @@ Use https://jitpack.io repository
 ```
 Use these dependencies per kotlin module respectively:
 ```
-compile 'com.github.lewik.klog:klog-metadata:1.3.70' //for common modules
-compile 'com.github.lewik.klog:klog-js:1.3.70'  //for js modules
-compile 'com.github.lewik.klog:klog-jvm:1.3.70'  //for jvm modules
-```                                   
-Versions will be updated with same kotlin version (PR are welcome)
+compile 'com.github.lewik.klog:klog-metadata:2.0.0' //for common modules
+compile 'com.github.lewik.klog:klog-js:2.0.0'  //for js modules
+compile 'com.github.lewik.klog:klog-jvm:2.0.0'  //for jvm modules
+```
 
 ## Usage                                              
 ```kotlin
