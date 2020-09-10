@@ -13,6 +13,7 @@ kotlin {
     targets {
         fromPreset(presets.jvm, 'jvm')
         fromPreset(presets.js, 'js') {
+            browser()
             compilations.all {
                 tasks[compileKotlinTaskName].kotlinOptions {
                     moduleKind = 'commonjs'
