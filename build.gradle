@@ -5,7 +5,7 @@ repositories {
     mavenCentral()
 }
 group 'klog'
-version '1.4.10'
+version '2.0.2'
 
 apply plugin: 'maven-publish'
 
