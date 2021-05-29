@@ -38,7 +38,7 @@ actual object KLoggers {
     private fun calcLevel(name: String) =
         levels
             .filter { it.first.matches(name) }
-            .maxBy { it.second }
+            .maxByOrNull { it.second }
             ?.second
             ?: defaultLoggingLevel
 }
