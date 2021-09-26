@@ -1,18 +1,18 @@
 plugins {
-    id 'kotlin-multiplatform' version '1.5.10'
+    id 'kotlin-multiplatform' version '1.5.30'
 }
 repositories {
     mavenCentral()
 }
 group 'klog'
-version '2.0.3.LEGACY1'
+version '2.0.3.IR'
 
 apply plugin: 'maven-publish'
 
 kotlin {
 
     jvm()
-    js(LEGACY){
+    js(IR){
         moduleName = project.name
         useCommonJs()
         browser()
