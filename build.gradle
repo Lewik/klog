@@ -5,7 +5,7 @@ repositories {
     mavenCentral()
 }
 group 'klog'
-version '2.0.3.IR'
+version '2.0.3.IR.2'
 
 apply plugin: 'maven-publish'
 
@@ -22,7 +22,6 @@ kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                implementation 'org.jetbrains.kotlin:kotlin-stdlib-common'
             }
         }
         commonTest {
@@ -33,7 +32,6 @@ kotlin {
         }
         jvmMain {
             dependencies {
-                implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
                 implementation "org.slf4j:slf4j-api:1.7.25"
             }
         }
@@ -45,13 +43,10 @@ kotlin {
         }
         jsMain {
             dependencies {
-                implementation 'org.jetbrains.kotlin:kotlin-stdlib-js'
             }
-
         }
         jsTest {
             dependencies {
-                implementation 'org.jetbrains.kotlin:kotlin-test-js'
             }
         }
 //        linuxMain {
