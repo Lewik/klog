@@ -19,9 +19,9 @@ Use https://jitpack.io repository
 ```
 Use these dependencies per kotlin module respectively:
 ```
-compile 'com.github.lewik.klog:klog-metadata:2.0.3' //for common modules
-compile 'com.github.lewik.klog:klog-js:2.0.3'  //for js modules
-compile 'com.github.lewik.klog:klog-jvm:2.0.3'  //for jvm modules
+compile 'com.github.lewik.klog:klog-metadata:2.0.4' //for common modules
+compile 'com.github.lewik.klog:klog-js:2.0.4'  //for js modules
+compile 'com.github.lewik.klog:klog-jvm:2.0.4'  //for jvm modules
 ```
 
 ## Usage                                              
