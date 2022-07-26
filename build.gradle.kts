@@ -7,7 +7,7 @@ repositories {
     mavenCentral()
 }
 
-group = "klog"
+group = "com.github.lewik"
 version = "2.0.4"
 
 kotlin {
