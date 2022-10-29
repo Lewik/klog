@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.7.10"
+    kotlin("multiplatform") version "1.7.20"
     `maven-publish`
 }
 
@@ -8,7 +8,7 @@ repositories {
 }
 
 group = "com.github.lewik"
-version = "2.0.4"
+version = "2.0.5"
 
 kotlin {
 

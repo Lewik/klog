@@ -19,7 +19,7 @@ Use https://jitpack.io repository
 ```
 
 ```
-compile 'com.github.lewik.klog:klog-metadata:2.0.4'
+compile 'com.github.lewik.klog:klog-metadata:2.0.5'
 ```
 
 ## Usage                                              
