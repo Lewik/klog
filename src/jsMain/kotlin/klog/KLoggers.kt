@@ -25,10 +25,6 @@ actual object KLoggers {
 
     @Suppress("UnsafeCastFromDynamic")
     private fun internalLogger(name: String): KLogger = loggers[name] ?: run {
-        
-        
-        listOf<Int>().single()
-        
         val logger = KLogger(JSLogger(name, calcLevel(name)))
         loggers[name] = logger
         logger
