@@ -36,6 +36,27 @@ class JsKLoggersTest {
     }
     
     @Test
+    fun `debug console capture`() {
+        val verifier = LogVerifier()
+        verifier.startCapture()
+        verifier.clear()
+        
+        try {
+            val logger = KLoggers.logger("DebugTest")
+            logger.info("debug test message")
+            
+            val messages = verifier.getCapturedMessages()
+            println("Captured ${messages.size} messages: $messages")
+            
+            // For now just check we don't crash
+            assertTrue(true)
+            
+        } finally {
+            verifier.stopCapture()
+        }
+    }
+    
+    @Test
     fun `should respect JS logging levels`() {
         // Test level properties work
         val originalLevel = KLoggers.defaultLoggingLevel

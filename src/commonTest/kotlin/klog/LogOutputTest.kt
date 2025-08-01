@@ -30,7 +30,6 @@ class LogOutputTest {
     fun `should log all levels`() {
         val logger = KLoggers.logger("LevelsLogger")
         
-        // Just test that logging doesn't throw exceptions
         logger.trace("trace message")
         logger.debug("debug message")
         logger.info("info message")
@@ -38,9 +37,12 @@ class LogOutputTest {
         logger.error("error message")
         
         val messages = verifier.getCapturedMessages()
-        // On JVM we should capture messages, on JS we don't capture but assume success
-        // if no exceptions were thrown (which we've already verified by reaching this point)
-        assertTrue(messages.isNotEmpty() || true, "Logging should work without throwing")
+        assertTrue(messages.isNotEmpty(), "Should capture at least some log messages")
+        
+        // Verify specific messages were logged
+        assertTrue(verifier.expectMessage("info message"), "Should capture info message")
+        assertTrue(verifier.expectMessage("warn message"), "Should capture warn message")
+        assertTrue(verifier.expectMessage("error message"), "Should capture error message")
     }
     
     @Test
@@ -77,13 +79,10 @@ class LogOutputTest {
         logger.info(true)
         
         val messages = verifier.getCapturedMessages()
-        // On JVM we can verify content, on JS we just verify no exceptions
-        if (messages.isNotEmpty()) {
-            assertTrue(messages.any { it.contains("string message") })
-            assertTrue(messages.any { it.contains("42") })
-            assertTrue(messages.any { it.contains("true") })
-        }
-        // If messages is empty (JS case), test passes because no exceptions were thrown
+        assertTrue(messages.isNotEmpty(), "Should capture messages")
+        assertTrue(messages.any { it.contains("string message") }, "Should capture string message")
+        assertTrue(messages.any { it.contains("42") }, "Should capture number message")
+        assertTrue(messages.any { it.contains("true") }, "Should capture boolean message")
     }
     
     @Test
@@ -94,7 +93,7 @@ class LogOutputTest {
         
         // Should not crash - if we reach this point, test passes
         val messages = verifier.getCapturedMessages()
-        // On JVM we should capture something, on JS we just verify no crash
-        assertTrue(messages.isNotEmpty() || true, "Should handle null without crashing")
+        assertTrue(messages.isNotEmpty(), "Should capture null message (as 'null' string)")
+        assertTrue(messages.any { it.contains("null") }, "Should log null as string")
     }
 }
