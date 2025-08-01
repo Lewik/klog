@@ -2,6 +2,7 @@
 
 [![](https://jitpack.io/v/lewik/klog.svg)](https://jitpack.io/#lewik/klog)
 [![CI](https://github.com/lewik/klog/actions/workflows/ci.yml/badge.svg)](https://github.com/lewik/klog/actions/workflows/ci.yml)
+[![Coverage](https://github.com/lewik/klog/actions/workflows/coverage.yml/badge.svg)](https://github.com/lewik/klog/actions/workflows/coverage.yml)
 
 A minimalistic Kotlin Multiplatform logging library providing unified API across JVM, JavaScript, and Native platforms (planned).
 
