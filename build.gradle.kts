@@ -13,7 +13,7 @@ version = "2.0.5"
 kotlin {
     jvm()
     js(IR) {
-        browser()
+        nodejs()
     }
 
     sourceSets {
@@ -21,9 +21,19 @@ kotlin {
             dependencies {
             }
         }
+        val commonTest by getting {
+            dependencies {
+                implementation(libs.kotlin.test)
+            }
+        }
         val jvmMain by getting {
             dependencies {
                 implementation(libs.slf4j.api)
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                implementation(libs.logback.classic)
             }
         }
         val jsMain by getting {

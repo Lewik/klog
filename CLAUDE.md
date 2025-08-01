@@ -3,7 +3,7 @@
 ## Project Overview
 klog is a Kotlin Multiplatform logging library providing unified API across JVM, JavaScript, and Native platforms (planned).
 
-**Core Philosophy:** Minimalistic and simple - no complex configuration, no bloated features, just clean logging API that works.
+**Core Philosophy:** The MAIN IDEA of this project is to be minimalistic and simple. No complex configuration, no bloated features, no enterprise nonsense - just clean logging API that works. This is the fundamental principle that drives all design decisions.
 
 **Key Features:**
 - Unified logging API for all platforms
@@ -128,5 +128,7 @@ dependencies {
 - Maintain backward compatibility
 - Keep the API surface minimal and intuitive
 - Test on both JVM and JS platforms before releasing
-- **Always ask: "Does this feature make the library simpler or more complex?"**
+- **CRITICAL: Always ask "Does this feature make the library simpler or more complex?"**
+- If it adds complexity - reject it. Simplicity is the core value.
 - Prefer convention over configuration
+- When in doubt, choose the simpler solution
