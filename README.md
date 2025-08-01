@@ -18,8 +18,8 @@ Use https://jitpack.io repository
 	}
 ```
 
-```
-compile 'com.github.lewik.klog:klog-metadata:2.1.0'
+```gradle
+implementation 'com.github.lewik.klog:klog-metadata:2.1.0'
 ```
 
 ## Usage                                              
@@ -70,6 +70,13 @@ class Qux {//*
 ```
 
 \* Qux: https://en.wikipedia.org/wiki/Metasyntactic_variable
+
+
+## Contributors
+
+This project is actively maintained and developed with assistance from:
+- [Claude Code](https://claude.ai/code) - AI coding assistant by Anthropic
+- Automated testing, code improvements, and release management
 
 ## Inspired by
 - code at [https://github.com/shafirov/klogging] 

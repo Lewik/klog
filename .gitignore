@@ -3,3 +3,4 @@
 build
 .kotlin
 kotlin-js-store
+.claude/
