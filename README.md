@@ -1,10 +1,17 @@
 # klog
 
-This project **is not abandonned**. It's just nothing to add.
-
 [![](https://jitpack.io/v/lewik/klog.svg)](https://jitpack.io/#lewik/klog)
+[![CI](https://github.com/lewik/klog/actions/workflows/ci.yml/badge.svg)](https://github.com/lewik/klog/actions/workflows/ci.yml)
 
-KLogging provides unified logging API, which you can use from Kotlin code targeted for JVM, Javascript common kotlin (and native soon).
+A minimalistic Kotlin Multiplatform logging library providing unified API across JVM, JavaScript, and Native platforms (planned).
+
+**Philosophy:** Simple, clean logging API that just works. No complex configuration, no enterprise bloat.
+
+## Java Version Support
+
+klog supports **Java 8+** to ensure compatibility with the widest range of production environments. **29% of production applications still use Java 8** (New Relic 2024), representing a significant portion of the Java ecosystem that deserves first-class support.
+
+**Tested on:** Java 8, 11, 17, 21 with comprehensive CI/CD pipeline.
                                       
                                       
 ## Download

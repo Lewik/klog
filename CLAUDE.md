@@ -13,10 +13,20 @@ klog is a Kotlin Multiplatform logging library providing unified API across JVM,
 - Delegation pattern for easy usage
 
 ## Technical Stack
-- **Language:** Kotlin 1.7.20
-- **Build:** Gradle with Kotlin DSL
+- **Language:** Kotlin 2.2.0
+- **Build:** Gradle 8.8 with Kotlin DSL
+- **JVM Target:** Java 8 (for maximum compatibility)
 - **Platforms:** JVM, JS (IR compilation)
 - **Publishing:** Maven publish + JitPack
+
+### Java 8 Support
+klog maintains Java 8 compatibility because **29% of production applications still use Java 8** (New Relic 2024 data). This represents a significant portion of the Java ecosystem that deserves first-class support.
+
+**Version constraints for Java 8 compatibility:**
+- **Gradle:** 8.8 (Gradle 8.14+ requires Java 11+)
+- **Logback:** 1.3.x series (1.4.x+ requires Java 11+)
+- **SLF4J:** 2.0.x compatible with Java 8
+- **Kotlin:** 2.2.0 with explicit `jvmTarget = JVM_1_8`
 
 ## Architecture
 
@@ -165,13 +175,14 @@ dependencies {
    - Focus on core functionality in README examples
    - Keep documentation concise and practical
 
-6. **CI/CD maintenance:**
+6. **CI/CD maintenance (only when releasing new versions):**
    - **CRITICAL: MUST research Java version usage statistics before EVERY release**
    - **ALWAYS Google current JDK popularity data - don't rely on outdated assumptions**
    - Update GitHub Actions matrix to test on most popular JDK versions (typically 3-4 versions)
-   - **MANDATORY sources to check:** New Relic Java Ecosystem Report, whichjdk.com, JetBrains Developer Ecosystem Survey
+   - **Example sources to check (but ALWAYS Google for latest data):** New Relic Java Ecosystem Report, whichjdk.com, JetBrains Developer Ecosystem Survey
    - Target: CI must cover 70%+ of production Java usage
    - **DO NOT SKIP THIS STEP** - Java ecosystem changes rapidly
+   - **Use Task tool with general-purpose agent for research** - better context handling for data analysis
 
 ## GitHub Communication Guidelines
 
