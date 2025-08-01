@@ -1,5 +1,5 @@
 plugins {
-    kotlin("multiplatform") version "1.7.20"
+    alias(libs.plugins.kotlin.multiplatform)
     `maven-publish`
 }
 
@@ -11,7 +11,6 @@ group = "com.github.lewik"
 version = "2.0.5"
 
 kotlin {
-
     jvm()
     js(IR) {
         browser()
@@ -24,7 +23,7 @@ kotlin {
         }
         val jvmMain by getting {
             dependencies {
-                implementation("org.slf4j:slf4j-api:1.7.36")
+                implementation(libs.slf4j.api)
             }
         }
         val jsMain by getting {
