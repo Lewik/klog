@@ -4,19 +4,11 @@
 [versions]
 # Core platform
 kotlin = "2.2.0"
-gradle = "8.14"
 
 # JVM logging
-slf4j = "2.0.16"
-
-# Testing
-kotlin-test = "2.2.0"
+slf4j = "2.0.17"
 
 [libraries]
-# Core
-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
-kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin-test" }
-
 # JVM platform
 slf4j-api = { module = "org.slf4j:slf4j-api", version.ref = "slf4j" }
 
