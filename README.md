@@ -3,6 +3,8 @@
 [![](https://jitpack.io/v/lewik/klog.svg)](https://jitpack.io/#lewik/klog)
 [![CI](https://github.com/lewik/klog/actions/workflows/ci.yml/badge.svg)](https://github.com/lewik/klog/actions/workflows/ci.yml)
 [![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/lewik/b519fc518e28671da0089ae4f911d699/raw/klog-coverage.json)](https://github.com/lewik/klog/actions/workflows/coverage.yml)
+![Platform](https://img.shields.io/badge/platform-jvm%20%7C%20js-orange?logo=kotlin)
+![Kotlin](https://img.shields.io/badge/kotlin-2.2.0-blue?logo=kotlin)
 
 A minimalistic Kotlin Multiplatform logging library providing unified API across JVM, JavaScript, and Native platforms (planned).
 
