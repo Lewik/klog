@@ -6,6 +6,7 @@
 ![Platform](https://img.shields.io/badge/platform-jvm%20%7C%20js-orange?logo=kotlin)
 ![Kotlin](https://img.shields.io/badge/kotlin-2.2.0-blue?logo=kotlin)
 [![NASA-not affiliated](https://img.shields.io/badge/NASA-not%20affiliated-blue?logo=nasa)](STARTUP.md)
+![Built with Claude](https://img.shields.io/badge/Built%20with-Claude-5436DA?style=flat&logo=anthropic&logoColor=white)
 
 A minimalistic Kotlin Multiplatform logging library providing unified API across JVM, JavaScript, and Native platforms (planned).
 
@@ -85,9 +86,7 @@ class Qux {//*
 
 ## Contributors
 
-This project is actively maintained and developed with assistance from:
-- [Claude Code](https://claude.ai/code) - AI coding assistant by Anthropic
-- Automated testing, code improvements, and release management
+This project is actively developed with assistance from [Claude Code](https://claude.ai/code) AI assistant.
 
 ## Inspired by
 - code at [https://github.com/shafirov/klogging] 
