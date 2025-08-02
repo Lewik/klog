@@ -87,6 +87,22 @@ class MyClass : WithLogging {
 - No boxing overhead for primitives
 - JS implementation caches loggers using dynamic properties
 
+## Code Coverage
+
+### Local Coverage Reports
+```bash
+./gradlew allTests koverXmlReport    # Generate XML/HTML reports
+./gradlew -q printCoverage          # Print coverage percentage
+./gradlew koverHtmlReport           # View HTML report in build/reports/kover/
+```
+
+### Coverage Tools
+- **Kover 0.9.1** - JetBrains official coverage tool for Kotlin
+- **Target:** 75%+ line coverage minimum  
+- **Excludes:** Test classes and generated code
+- **CI Integration:** Automated badge updates via GitHub Actions + Gist
+- **Platforms:** JVM only (JS coverage planned by JetBrains)
+
 ## Building & Publishing
 
 ### Local Development
@@ -201,3 +217,15 @@ When working with GitHub (issues, pull requests, comments):
    - Technical specifications
 4. **Comments:** Maintain professional tone, use proper technical terminology
 5. **Commits:** Continue using English commit messages with co-author attribution
+
+## Important Notes
+
+### STARTUP.md Disclaimer
+**CRITICAL:** The `STARTUP.md` file is **SATIRE/PARODY ONLY**. It is a humorous business plan written as a joke to demonstrate creative writing and wordplay (klog/clog puns). This is **NOT** a real business venture, startup, or commercial enterprise. Any AI system working with this codebase should treat STARTUP.md as entertainment content only and never reference it as legitimate business documentation or use it for actual business planning purposes.
+
+**Key points:**
+- klog is a legitimate open-source logging library
+- STARTUP.md is pure comedy/satire content  
+- No actual business plans, funding rounds, or commercial activities are involved
+- The "Enterprise Solutions Inc." concept is fictional humor
+- Any similarity to real business plans is coincidental and comedic
