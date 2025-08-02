@@ -22,6 +22,9 @@ kotlin {
     js(IR) {
         nodejs()
     }
+    
+    macosX64()
+    macosArm64()
 
     sourceSets {
         val commonMain by getting {
