@@ -7,43 +7,28 @@ class NativeLogger(private val name: String) : BaseLogger {
     override val isWarnEnabled: Boolean = true
     override val isErrorEnabled: Boolean = true
 
-    override fun trace(message: Any?) {
-        println("TRACE $name: $message")
+    private fun log(level: String, message: Any?) {
+        NativeLoggerRegistry.currentWriter("$level $name: $message")
     }
 
-    override fun debug(message: Any?) {
-        println("DEBUG $name: $message")
+    private fun log(level: String, t: Throwable, message: Any?) {
+        NativeLoggerRegistry.currentWriter("$level $name: $message - ${t.message}")
     }
 
-    override fun info(message: Any?) {
-        println("INFO $name: $message")
-    }
+    override fun trace(message: Any?) = log("TRACE", message)
+    override fun debug(message: Any?) = log("DEBUG", message)
+    override fun info(message: Any?) = log("INFO", message)
+    override fun warn(message: Any?) = log("WARN", message)
+    override fun error(message: Any?) = log("ERROR", message)
 
-    override fun warn(message: Any?) {
-        println("WARN $name: $message")
-    }
+    override fun trace(t: Throwable, message: Any?) = log("TRACE", t, message)
+    override fun debug(t: Throwable, message: Any?) = log("DEBUG", t, message)
+    override fun info(t: Throwable, message: Any?) = log("INFO", t, message)
+    override fun warn(t: Throwable, message: Any?) = log("WARN", t, message)
+    override fun error(t: Throwable, message: Any?) = log("ERROR", t, message)
+}
 
-    override fun error(message: Any?) {
-        println("ERROR $name: $message")
-    }
-
-    override fun trace(t: Throwable, message: Any?) {
-        println("TRACE $name: $message - ${t.message}")
-    }
-
-    override fun debug(t: Throwable, message: Any?) {
-        println("DEBUG $name: $message - ${t.message}")
-    }
-
-    override fun info(t: Throwable, message: Any?) {
-        println("INFO $name: $message - ${t.message}")
-    }
-
-    override fun warn(t: Throwable, message: Any?) {
-        println("WARN $name: $message - ${t.message}")
-    }
-
-    override fun error(t: Throwable, message: Any?) {
-        println("ERROR $name: $message - ${t.message}")
-    }
+// Global registry for native logger writer injection (shared between main and test)
+object NativeLoggerRegistry {
+    var currentWriter: (String) -> Unit = { message -> println(message) }
 }
