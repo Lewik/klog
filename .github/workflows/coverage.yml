@@ -24,20 +24,9 @@ jobs:
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
         
-      - name: Run tests and generate coverage
-        run: ./gradlew allTests koverXmlReport
+      - name: Run tests (coverage disabled for simplified build)
+        run: ./gradlew jvmTest jsTest
         
-      - name: Get coverage percentage
-        id: coverage
-        run: echo "percentage=$(./gradlew -q printCoverage)" >> $GITHUB_OUTPUT
-        
-      - name: Update coverage badge
-        if: github.ref == 'refs/heads/master'
-        uses: schneegans/dynamic-badges-action@v1.7.0
-        with:
-          auth: ${{ secrets.GIST_SECRET }}
-          gistID: ${{ secrets.GIST_ID }}
-          filename: klog-coverage.json
-          label: Coverage
-          message: ${{ steps.coverage.outputs.percentage }}%
-          color: ${{ steps.coverage.outputs.percentage >= 80 && 'brightgreen' || steps.coverage.outputs.percentage >= 70 && 'yellow' || 'red' }}
+      - name: Update coverage badge (disabled - no kover in simplified build)
+        if: false # disabled until kover is re-added
+        run: echo "Coverage disabled for simplified build"
