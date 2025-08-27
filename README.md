@@ -10,15 +10,22 @@
 
 A minimalistic Kotlin Multiplatform logging library providing unified API across JVM, JavaScript, and Native platforms.
 
-**Philosophy:** Simple, clean logging API that just works. No complex configuration, no enterprise bloat.
+**Philosophy:** klog is a "dumb box" that just works. Zero dependencies, zero configuration, zero complexity. Out of the box it simply uses `println()` on all platforms with lambda support for performance. You can easily swap the output mechanism if needed, but the defaults are intentionally simple and fast.
 
 ## Supported Platforms
 
 | Platform | Implementation | Output |
 |----------|---------------|---------|
-| **JVM** | SLF4J adapter | Any SLF4J implementation (Logback, Log4j2, etc.) |
+| **JVM** | println() | Standard output (simple and fast) |
 | **JavaScript** | Console API | Browser console / Node.js console |
 | **Native** | println() | Standard output (macOS, Linux, Windows) |
+
+**The "dumb box" approach:**
+- No external dependencies (not even SLF4J!)
+- No configuration files or complex setup
+- Just `println()` by default - works everywhere
+- Lazy lambda evaluation for performance: `log.debug { "expensive $calculation" }`
+- Easy customization through simple writer interface when needed
 
 **Native targets:**
 - `macosX64` - Intel Mac
@@ -49,52 +56,108 @@ implementation 'com.github.lewik.klog:klog-metadata:2.1.0'
 
 ## Usage                                              
 ```kotlin
-class Foo {
-    val log = KLoggers.logger(this)
+import klog.klog
+
+class MyClass {
+    private val log = klog()  // Simple extension function
     
-    fun test() {
-        log("This string will be evaluated regardless if trace enabled = ${log.isTraceEnabled}")
-        log {"This string will not be evaluated unless trace enabled = ${log.isTraceEnabled}"}
-    
-        log("debug level")
-        log { "debug level" }
+    fun doWork() {
+        log.info("Starting work")
+        log.debug { "Lazy evaluation: expensive calculation only if debug enabled" }
         
-        log.trace("trace")
-        log.debug("debug")
-        log.info("info")
-        log.warn("warn")
-        log.debug("error")
-        
-        log.trace { "trace" }
-        log.debug { "debug" }
-        log.info { "info" }
-        log.warn { "warn" }
-        log.debug { "error" }
+        try {
+            // ... some work
+        } catch (e: Exception) {
+            log.error(e, "Work failed")
+        }
     }
 }
 ```
 
-Another ways to obtain logger:
+### All logging methods:
 ```kotlin
-class Bar {
-    private val log = KLoggers.logger(this)
-    
-    fun test() { log("Have some logging!") }
+import klog.klog
+
+val log = klog()
+
+// Basic logging
+log.trace("trace message")
+log.debug("debug message") 
+log.info("info message")
+log.warn("warning message")
+log.error("error message")
+
+// Lazy evaluation (only computed if level enabled)
+log.debug { "Expensive calculation: ${expensiveFunction()}" }
+
+// With exceptions
+log.error(exception, "Something went wrong")
+log.error(exception) { "Error in ${getCurrentContext()}" }
+
+// Shorthand (defaults to info level)
+log("Quick info message")
+```
+
+### Alternative ways to create loggers:
+```kotlin
+import klog.klog
+import klog.KLoggers
+import klog.WithLogging
+import klog.KLoggerHolder
+
+// Extension function (recommended)
+class MyClass {
+    private val log = klog()
 }
 
-class Baz : WithLogging by KLoggerHolder() {
-    fun test() { log("Have some logging!") }
+// Explicit factory call
+class MyClass {
+    private val log = KLoggers.logger(this)
 }
- 
-class Qux {//*
-    companion object: WithLogging by KLoggerHolder() 
-    
-    fun test() { log("Have some logging!") }
-} 
+
+// Delegation pattern
+class MyClass : WithLogging by KLoggerHolder() {
+    fun work() { 
+        log.info("Using delegated logger") 
+    }
+}
+
+// String-based logger name
+val log = KLoggers.logger("CustomName") 
 
 ```
 
-\* Qux: https://en.wikipedia.org/wiki/Metasyntactic_variable
+## Customization
+
+The "dumb box" philosophy means klog just works out of the box with `println()`, but you can easily customize the output when needed:
+
+```kotlin
+import klog.KLoggerRegistry
+import klog.LogWriter
+
+// Lambda syntax (simple cases)
+KLoggerRegistry.currentWriter = LogWriter { level, tag, message, throwable ->
+    writeToFile("$level [$tag]: $message")
+    if (throwable != null) {
+        writeToFile(throwable.stackTraceToString())
+    }
+}
+
+// Class syntax (complex cases)
+class FileLogWriter(private val file: File) : LogWriter {
+    override fun write(level: LogLevel, tag: String, message: String, throwable: Throwable?) {
+        file.appendText("$level [$tag]: $message\n")
+        throwable?.printStackTrace()
+    }
+}
+
+KLoggerRegistry.currentWriter = FileLogWriter(File("app.log"))
+```
+
+**Why this works:**
+- Default behavior: simple `println()` - no setup needed
+- Custom behavior: swap the writer when you need something different  
+- No complex configuration - just a single function to override
 
 
 ## Contributors
